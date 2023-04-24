@@ -26,7 +26,7 @@ icons.forEach((icon) => icon.querySelector("img")!.animate(...generateAnimations
 // adding displace animation
 
 function resetScene(allIcons: NodeListOf<HTMLDivElement>, currentIcon: HTMLDivElement) {
-  icons.forEach((icon) => {
+  allIcons.forEach((icon) => {
     if (icon.isSameNode(currentIcon)) {
       icon
         .querySelector("img")!
@@ -39,41 +39,53 @@ function resetScene(allIcons: NodeListOf<HTMLDivElement>, currentIcon: HTMLDivEl
   });
 }
 
-icons.forEach((clickedIcon) => clickedIcon.addEventListener("mouseenter", (event) => {
+function displaceIcons(allIcons: NodeListOf<HTMLDivElement>, currentIcon: HTMLDivElement) {
+  let x: number;
+  let y: number;
+
+  allIcons.forEach((icon) => {
+    if (icon.isSameNode(currentIcon)) {
+      let rect = icon.getBoundingClientRect();
+      let x = rect.x;
+      let y = rect.y;
+
+      icon
+        .querySelector("img")!
+        .getAnimations()
+        .forEach((animation) => animation.pause());
+      icon.style.transform = "scale(150%)";
+    } else {
+      let rect = icon.getBoundingClientRect();
+
+      let transformation: string = "";
+
+      if (rect.x <= x) {
+        transformation += "translateX(-70px) ";
+      }
+      if (rect.y <= y) {
+        transformation += "translateY(-70px) ";
+      }
+      if (rect.x > x) {
+        transformation += "translateX(70px) ";
+      }
+      if (rect.y > y) {
+        transformation += "translateY(70px) ";
+      }
+
+      icon.style.transform = transformation;
+    }
+  });
+}
+
+icons.forEach((clickedIcon) =>
+  clickedIcon.addEventListener("mouseenter", (event) => {
     let x = event.clientX;
     let y = event.clientY;
 
     resetScene(icons, clickedIcon);
 
     setTimeout(() => {
-      icons.forEach((icon) => {
-        if (icon.isSameNode(clickedIcon)) {
-          icon
-            .querySelector("img")!
-            .getAnimations()
-            .forEach((animation) => animation.pause());
-          icon.style.transform = "scale(150%)";
-        } else {
-          let rect = icon.getBoundingClientRect();
-
-          let transformation: string = "";
-
-          if (rect.x <= x) {
-            transformation += "translateX(-70px) ";
-          }
-          if (rect.y <= y) {
-            transformation += "translateY(-70px) ";
-          }
-          if (rect.x > x) {
-            transformation += "translateX(70px) ";
-          }
-          if (rect.y > y) {
-            transformation += "translateY(70px) ";
-          }
-
-          icon.style.transform = transformation;
-        }
-      });
+      displaceIcons(icons, clickedIcon);
     }, 100);
   })
 );

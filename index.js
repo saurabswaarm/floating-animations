@@ -20,7 +20,7 @@ function generateAnimations() {
 icons.forEach((icon) => icon.querySelector("img").animate(...generateAnimations()));
 // adding displace animation
 function resetScene(allIcons, currentIcon) {
-    icons.forEach((icon) => {
+    allIcons.forEach((icon) => {
         if (icon.isSameNode(currentIcon)) {
             icon
                 .querySelector("img")
@@ -33,37 +33,45 @@ function resetScene(allIcons, currentIcon) {
         }
     });
 }
+function displaceIcons(allIcons, currentIcon) {
+    let x;
+    let y;
+    allIcons.forEach((icon) => {
+        if (icon.isSameNode(currentIcon)) {
+            let rect = icon.getBoundingClientRect();
+            let x = rect.x;
+            let y = rect.y;
+            icon
+                .querySelector("img")
+                .getAnimations()
+                .forEach((animation) => animation.pause());
+            icon.style.transform = "scale(150%)";
+        }
+        else {
+            let rect = icon.getBoundingClientRect();
+            let transformation = "";
+            if (rect.x <= x) {
+                transformation += "translateX(-70px) ";
+            }
+            if (rect.y <= y) {
+                transformation += "translateY(-70px) ";
+            }
+            if (rect.x > x) {
+                transformation += "translateX(70px) ";
+            }
+            if (rect.y > y) {
+                transformation += "translateY(70px) ";
+            }
+            icon.style.transform = transformation;
+        }
+    });
+}
 icons.forEach((clickedIcon) => clickedIcon.addEventListener("mouseenter", (event) => {
     let x = event.clientX;
     let y = event.clientY;
     resetScene(icons, clickedIcon);
     setTimeout(() => {
-        icons.forEach((icon) => {
-            if (icon.isSameNode(clickedIcon)) {
-                icon
-                    .querySelector("img")
-                    .getAnimations()
-                    .forEach((animation) => animation.pause());
-                icon.style.transform = "scale(150%)";
-            }
-            else {
-                let rect = icon.getBoundingClientRect();
-                let transformation = "";
-                if (rect.x <= x) {
-                    transformation += "translateX(-70px) ";
-                }
-                if (rect.y <= y) {
-                    transformation += "translateY(-70px) ";
-                }
-                if (rect.x > x) {
-                    transformation += "translateX(70px) ";
-                }
-                if (rect.y > y) {
-                    transformation += "translateY(70px) ";
-                }
-                icon.style.transform = transformation;
-            }
-        });
+        displaceIcons(icons, clickedIcon);
     }, 100);
 }));
 icons.forEach((clickedIcon) => clickedIcon.addEventListener("mouseleave", (event) => {
