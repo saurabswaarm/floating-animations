@@ -1,3 +1,203 @@
-html{
-    background-color: beige;
+html {
+  background-color: beige;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.fpgrid {
+  display: grid;
+  height: inherit;
+  width: inherit;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.fpicon-a1010 {
+  grid-area: 2/9/4/11;
+  position: relative;
+}
+.fpicon-a1010 img {
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  width: 50%;
+}
+
+.fpicon-lens {
+  grid-area: 7/4/9/6;
+  position: relative;
+}
+.fpicon-lens img {
+  position: absolute;
+  top: -30%;
+  left: 20%;
+  width: 80%;
+}
+
+.fpicon-D {
+  grid-area: -4/-6/-1/-3;
+  position: relative;
+}
+.fpicon-D img {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+}
+
+.fpicon-E {
+  grid-area: 4/5/6/7;
+  position: relative;
+}
+.fpicon-E img {
+  position: absolute;
+  left: 10%;
+  top: 0%;
+  width: 70%;
+}
+
+.fpicon-woodenpanel {
+  grid-area: 3/7/7/9;
+  position: relative;
+}
+.fpicon-woodenpanel img {
+  position: absolute;
+  width: 100%;
+  min-width: 166px;
+}
+
+.fpicon-fish {
+  grid-area: 1/3/3/5;
+  position: relative;
+}
+.fpicon-fish img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 80%;
+}
+
+.fpicon-M {
+  grid-area: 6/6/8/8;
+  position: relative;
+}
+.fpicon-M img {
+  top: 20%;
+  left: 20%;
+  position: absolute;
+  width: 70%;
+  min-width: 104px;
+}
+
+.fpicon-speakerpointingleft {
+  grid-area: 6/12/8/14;
+  position: relative;
+}
+.fpicon-speakerpointingleft img {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  width: 80%;
+}
+
+.fpicon-speakerfacingus {
+  grid-area: 2/5/4/7;
+  position: relative;
+}
+.fpicon-speakerfacingus img {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 60%;
+}
+
+.fpicon-squarepanel {
+  grid-area: 2/12/3/13;
+  position: relative;
+}
+.fpicon-squarepanel img {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 100%;
+  min-width: 85px;
+}
+
+.fpicon-tweeter {
+  grid-area: 5/3/6/4;
+  position: relative;
+}
+.fpicon-tweeter img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 80%;
+}
+
+.fpicon-P {
+  grid-area: 5/1/9/3;
+  position: relative;
+}
+.fpicon-P img {
+  position: absolute;
+  left: -30%;
+  bottom: max((1850px - 110vw) * -0.1, -10px);
+  height: 50vh;
+  width: 180%;
+  min-width: 200px;
+}
+
+.fpicon-R {
+  grid-area: 5/9/6/10;
+  position: relative;
+}
+.fpicon-R img {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  width: 80%;
+  min-width: 47px;
+}
+
+.fpicon-S {
+  grid-area: 3/10/5/12;
+  position: relative;
+}
+.fpicon-S img {
+  position: absolute;
+  top: 20%;
+  right: 30%;
+  width: 40%;
+}
+
+.fpicon-A {
+  grid-area: 2/2/4/4;
+  position: relative;
+}
+.fpicon-A img {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  width: 50%;
+  min-width: 140px;
+}
+
+.fpicon-N {
+  grid-area: 1/6/3/8;
+  position: relative;
+}
+.fpicon-N img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 50%;
+}
+
+div[class^=fpicon] {
+  transition: transform 0.25s;
+}
+
+/*# sourceMappingURL=index.css.map */
